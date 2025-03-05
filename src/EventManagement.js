@@ -31,7 +31,7 @@ const EventManagement = ({ user }) => {
     e.preventDefault();
 
     if (!user || !user.UserID) {
-      console.error("UserID is undefined when adding event.");  // ✅ Debugging: Log error
+      console.error("UserID is undefined when adding event.");  
       setMessage("Error: User is not logged in.");
       return;
     }
@@ -62,6 +62,26 @@ const EventManagement = ({ user }) => {
       console.error("Error adding event:", error);
       setMessage("Failed to add event. Please try again.");
     });
+  };
+
+  // ✅ Function to Handle Event Deletion
+  const handleDeleteEvent = (eventID) => {
+    if (!window.confirm("Are you sure you want to delete this event?")) return;
+
+    axios.get(`https://craftipro.com/delete_event.php?EventID=${eventID}`)
+      .then(response => {
+        console.log("Delete Event Response:", response.data);
+        if (response.data.success) {
+          setMessage("Event deleted successfully!");
+          fetchEvents(); // Refresh the event list
+        } else {
+          setMessage("Error deleting event: " + response.data.error);
+        }
+      })
+      .catch(error => {
+        console.error("Error deleting event:", error);
+        setMessage("Failed to delete event.");
+      });
   };
 
   return (
@@ -100,9 +120,17 @@ const EventManagement = ({ user }) => {
               <a href={`/manage-business/events/${event.EventID}/record-sale`} className="btn btn-primary mt-2 me-2">
                 Record Sale
               </a>
-              <a href={`/manage-business/events/${event.EventID}/add-expense`} className="btn btn-danger mt-2">
+              <a href={`/manage-business/events/${event.EventID}/add-expense`} className="btn btn-danger mt-2 me-2">
                 Add Expense
               </a>
+              {/* 🟩 Edit Event Button (Green) */}
+              <a href={`/manage-business/events/${event.EventID}/edit`} className="btn btn-success mt-2 me-2">
+                Edit Event
+              </a>
+              {/* ❌ Delete Event Button (Red) */}
+              <button className="btn btn-outline-danger mt-2" onClick={() => handleDeleteEvent(event.EventID)}>
+                Delete
+              </button>
             </li>
           ))
         ) : (
@@ -114,6 +142,7 @@ const EventManagement = ({ user }) => {
 };
 
 export default EventManagement;
+
 
 
 
