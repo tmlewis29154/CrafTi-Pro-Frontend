@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditEvent = ({ user }) => {
-  const { id } = useParams(); // ✅ Get EventID from URL
+  const { eventId } = useParams(); // ✅ Get EventID from URL
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
@@ -22,7 +22,7 @@ const EditEvent = ({ user }) => {
 
   const fetchEventDetails = () => {
     axios
-      .get(`https://craftipro.com/get_event_details.php?EventID=${id}`)
+      .get(`https://craftipro.com/get_event_details.php?EventID=${eventId}`)
       .then((response) => {
         if (response.data.error) {
           setMessage(response.data.error);
@@ -42,7 +42,7 @@ const EditEvent = ({ user }) => {
     e.preventDefault();
 
     const updatedEvent = {
-      EventID: id,
+      EventID: eventId,
       EventName: eventName,
       EventDate: eventDate,
       EventDesc: eventDesc,

@@ -10,6 +10,8 @@ import CalendarPage from './CalendarPage';
 import Dashboard from './Dashboard';
 import Reports from './Reports';
 import LoginRegister from './LoginRegister'; 
+import EditEvent from "./EditEvent";
+
 
 function App() {
   const [user, setUser] = useState(() => {
