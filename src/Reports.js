@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+} from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
 
 // ✅ Register required Chart.js components
@@ -9,7 +19,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineEleme
 const Reports = ({ user }) => {
   const [salesData, setSalesData] = useState([]);
   const [expensesData, setExpensesData] = useState([]);
-  const [profitData, setProfitData] = useState([]);
+  const [profitData, setProfitData] = useState([]); // ✅ Fix: Now mapped to correct API response
   const [eventProfits, setEventProfits] = useState([]);
   const [topProducts, setTopProducts] = useState([]);
   const [timeframe, setTimeframe] = useState("current_month"); // Default: Current Month
@@ -38,7 +48,7 @@ const Reports = ({ user }) => {
         // ✅ Correct API response mapping
         setSalesData(Array.isArray(response.data.sales) ? response.data.sales : []);
         setExpensesData(Array.isArray(response.data.expenses) ? response.data.expenses : []);
-        setProfitData(Array.isArray(response.data.profit) ? response.data.profit : []);
+        setProfitData(Array.isArray(response.data.profit_over_time) ? response.data.profit_over_time : []); // ✅ Fix: Map to correct API field
         setEventProfits(Array.isArray(response.data.most_profitable_events) ? response.data.most_profitable_events : []);
         setTopProducts(Array.isArray(response.data.top_selling_products) ? response.data.top_selling_products : []);
       })
@@ -128,11 +138,11 @@ const Reports = ({ user }) => {
                     },
                     {
                       label: "Net Profit",
-                      data: profitData.map(entry => Number(entry.total) || 0), // ✅ Ensure negatives are included
+                      data: profitData.map(entry => Number(entry.total) || 0), // ✅ Fix: Ensure correct mapping
                       borderColor: "green",
                       backgroundColor: "rgba(0, 255, 0, 0.2)",
                       fill: true,
-                  }
+                    }
                   ],
                 }}
                 options={{ 
@@ -155,6 +165,7 @@ const Reports = ({ user }) => {
 };
 
 export default Reports;
+
 
 
 
