@@ -33,37 +33,48 @@ const Reports = ({ user }) => {
 
   const fetchAnalytics = () => {
     setLoading(true);
-    let url = `https://craftipro.com/analytics.php?UserID=${user.UserID}&timeframe=${timeframe}`;
-    
+  
+    let analyticsUrl = `https://craftipro.com/analytics.php?UserID=${user.UserID}&timeframe=${timeframe}`;
+    let topProductsUrl = `https://craftipro.com/get_top_selling_products.php?UserID=${user.UserID}`;
+  
     if (timeframe === "custom" && customStartDate && customEndDate) {
-      url += `&startDate=${customStartDate}&endDate=${customEndDate}`;
+      analyticsUrl += `&startDate=${customStartDate}&endDate=${customEndDate}`;
     }
-
-    console.log("🔍 Fetching Reports with URL:", url);
-
-    axios.get(url)
+  
+    console.log("🔍 Fetching Reports with URL:", analyticsUrl);
+    console.log("🔍 Fetching Top-Selling Products with URL:", topProductsUrl);
+  
+    // ✅ Fetch Analytics Data
+    axios.get(analyticsUrl)
       .then(response => {
         console.log("✅ Reports API Full Response:", response.data);
-
-        // ✅ Correct API response mapping
+  
         setSalesData(Array.isArray(response.data.sales) ? response.data.sales : []);
         setExpensesData(Array.isArray(response.data.expenses) ? response.data.expenses : []);
-        setProfitData(Array.isArray(response.data.profit_over_time) ? response.data.profit_over_time : []); // ✅ Fix: Map to correct API field
+        setProfitData(Array.isArray(response.data.profit_over_time) ? response.data.profit_over_time : []);
         setEventProfits(Array.isArray(response.data.most_profitable_events) ? response.data.most_profitable_events : []);
-        setTopProducts(Array.isArray(response.data.top_selling_products) ? response.data.top_selling_products : []);
       })
       .catch(error => {
         console.error("❌ Error fetching analytics:", error);
-
-        // ✅ Prevents app crash due to undefined values
         setSalesData([]);
         setExpensesData([]);
         setProfitData([]);
         setEventProfits([]);
+      });
+  
+    // ✅ Fetch Top-Selling Products Data
+    axios.get(topProductsUrl)
+      .then(response => {
+        console.log("🔥 Top-Selling Products Response:", response.data);
+        setTopProducts(Array.isArray(response.data) ? response.data : []);
+      })
+      .catch(error => {
+        console.error("❌ Error fetching top-selling products:", error);
         setTopProducts([]);
       })
       .finally(() => setLoading(false));
   };
+  
 
   useEffect(() => {
     console.log("📊 Updated State - Sales Data:", salesData);
@@ -160,15 +171,27 @@ const Reports = ({ user }) => {
           )}
         </div>
       </div>
-    </div>
-  );
+
+      {/* 🔥 Top-Selling Products */}
+<div className="card shadow-lg rounded mb-4">
+  <div className="card-body">
+    <h5 className="card-title text-center">🔥 Top-Selling Products</h5>
+    {topProducts.length > 0 ? (
+      <ul className="list-group">
+        {topProducts.map((product, index) => (
+          <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+            <strong>{product.name}</strong>
+            <span className="badge bg-primary rounded-pill">{Number(product.total_sold) || 0} units</span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p className="text-muted text-center">No sales data available.</p>
+    )}
+  </div>
+</div>
+</div>
+ );
 };
 
 export default Reports;
-
-
-
-
-
-
-
