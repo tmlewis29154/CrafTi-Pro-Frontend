@@ -68,6 +68,7 @@ function App() {
         <Route path="/manage-business/events" element={user ? <EventManagement user={user} /> : <LoginRegister setUser={handleLogin} />} />
         <Route path="/manage-business/events/:eventId/record-sale" element={user ? <RecordSale user={user} /> : <LoginRegister setUser={handleLogin} />} />
         <Route path="/manage-business/events/:eventId/add-expense" element={user ? <AddExpense user={user} /> : <LoginRegister setUser={handleLogin} />} />
+        <Route path="/manage-business/events/:eventId/edit" element={user ? <EditEvent user={user} /> : <LoginRegister setUser={handleLogin} />} />
         <Route path="/manage-business/expenses" element={user ? <ExpenseTracking user={user} /> : <LoginRegister setUser={handleLogin} />} />
         <Route path="/manage-business/record-sale" element={user ? <RecordSale user={user} /> : <LoginRegister setUser={handleLogin} />} /> 
         <Route path="/reports" element={user ? <Reports user={user} /> : <LoginRegister setUser={handleLogin} />} />
