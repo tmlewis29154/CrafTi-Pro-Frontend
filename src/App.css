@@ -1,0 +1,43 @@
+/* Center text inside components */
+.App {
+  text-align: center;
+}
+
+/* App Header */
+.App-header {
+  background-color: #343a40;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* Remove default margin from all headings inside the app */
+.App h2, .App h3 {
+  margin-top: 0;
+}
+
+/* Links */
+.App-link {
+  color: #17a2b8; /* Bootstrap info color */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.App-link:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
