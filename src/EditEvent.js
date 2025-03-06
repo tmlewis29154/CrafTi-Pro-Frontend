@@ -22,7 +22,7 @@ const EditEvent = ({ user }) => {
 
   const fetchEventDetails = () => {
     axios
-      .get(`https://craftipro.com/get_event_details.php?EventID=${eventId}`)
+      .get(`https://craftipro.com/edit_event.php?EventID=${eventId}`)
       .then((response) => {
         if (response.data.error) {
           setMessage(response.data.error);
