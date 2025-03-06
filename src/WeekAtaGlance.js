@@ -5,6 +5,7 @@ import "./WeekAtaGlance.css";
 const WeekAtaGlance = ({ user }) => {
   const [events, setEvents] = useState([]);
   const [weekDays, setWeekDays] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (!user || !user.UserID) {
@@ -15,6 +16,12 @@ const WeekAtaGlance = ({ user }) => {
     console.log("✅ WeekAtAGlance - Logged-in UserID:", user.UserID);
     fetchWeekDays();
     fetchEvents();
+
+    // ✅ Handle Window Resize for Responsive Layout
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
   }, [user]);
 
   const fetchWeekDays = () => {
@@ -33,8 +40,8 @@ const WeekAtaGlance = ({ user }) => {
         displayDate: date.toLocaleDateString("en-US", {
           month: "short",
           day: "numeric",
-        }), // Example: "Mar 10"
-        dayName: date.toLocaleDateString("en-US", { weekday: "short" }), // Example: "Sun"
+        }),
+        dayName: date.toLocaleDateString("en-US", { weekday: "short" }),
       });
     }
     setWeekDays(days);
@@ -95,7 +102,7 @@ const WeekAtaGlance = ({ user }) => {
   return (
     <div className="week-calendar-container">
       <h3 className="text-center fw-bold text-primary">📅 Week at a Glance</h3>
-      <div className="week-grid">
+      <div className={`week-grid ${windowWidth < 768 ? "mobile-grid" : ""}`}>
         {weekDays.map(({ fullDate, displayDate, dayName }) => (
           <div key={fullDate} className="day-column">
             <h5 className="day-header">
@@ -120,5 +127,4 @@ const WeekAtaGlance = ({ user }) => {
   );
 };
 
-// ✅ Move export outside of the return block
 export default WeekAtaGlance;
