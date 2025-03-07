@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const ExpenseTracking = ({ user }) => {  // ✅ Accept user as a prop
+const ExpenseTracking = ({ user }) => {  // Accept user as a prop
   const [expenses, setExpenses] = useState([]);
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    if (user) fetchExpenses();  // ✅ Ensure user is defined before making API call
+    if (user) fetchExpenses();  // Ensure user is defined before making API call
   }, [user]);
 
   const fetchExpenses = () => {
-    if (!user) return;  // ✅ Prevent error if user is undefined
+    if (!user) return;  // Prevent error if user is undefined
 
     axios.get(`https://craftipro.com/get_expenses.php?UserID=${user.UserID}`)
       .then(response => setExpenses(response.data))
@@ -21,10 +21,10 @@ const ExpenseTracking = ({ user }) => {  // ✅ Accept user as a prop
 
   const handleAddExpense = (e) => {
     e.preventDefault();
-    if (!user) return;  // ✅ Prevent error if user is undefined
+    if (!user) return;  // Prevent error if user is undefined
 
     const expenseData = {
-      UserID: user.UserID, // ✅ Include UserID
+      UserID: user.UserID, // Include UserID
       ExpCategory: category,
       ExpAmount: amount,
       ExpDesc: description,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const SalesTracking = ({ user }) => { // ✅ Accept `user` as a prop
+const SalesTracking = ({ user }) => { 
   const [sales, setSales] = useState([]);
 
   useEffect(() => {
@@ -13,12 +13,12 @@ const SalesTracking = ({ user }) => { // ✅ Accept `user` as a prop
     axios
       .get(`https://craftipro.com/get_sales.php?UserID=${user.UserID}`)
       .then((response) => {
-        console.log("Fetched Sales Data:", response.data); // ✅ Debugging
+        console.log("Fetched Sales Data:", response.data); // Debugging
         setSales(Array.isArray(response.data) ? response.data : []);
       })
       .catch((error) => {
         console.error("Error fetching sales:", error);
-        setSales([]); // ✅ Set empty array on error
+        setSales([]); // Set empty array on error
       });
   }, [user]);
 

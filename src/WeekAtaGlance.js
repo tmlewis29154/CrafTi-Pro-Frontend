@@ -13,11 +13,11 @@ const WeekAtaGlance = ({ user }) => {
       return;
     }
 
-    console.log("✅ WeekAtAGlance - Logged-in UserID:", user.UserID);
+    console.log("WeekAtAGlance - Logged-in UserID:", user.UserID);
     fetchWeekDays();
     fetchEvents();
 
-    // ✅ Handle Window Resize for Responsive Layout
+    // Window Resize for Responsive Layout
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
 
@@ -51,10 +51,10 @@ const WeekAtaGlance = ({ user }) => {
     axios
       .get(`https://craftipro.com/get_event.php?UserID=${user.UserID}`)
       .then((response) => {
-        console.log("✅ Raw API Response:", response.data);
+        console.log("Raw API Response:", response.data);
 
         if (!response.data || !Array.isArray(response.data)) {
-          console.error("❌ API returned invalid JSON or empty:", response.data);
+          console.error("API returned invalid JSON or empty:", response.data);
           setEvents([]);
           return;
         }
@@ -62,7 +62,7 @@ const WeekAtaGlance = ({ user }) => {
         filterEventsForCurrentWeek(response.data);
       })
       .catch((error) => {
-        console.error("❌ Error fetching events:", error.message);
+        console.error("Error fetching events:", error.message);
         setEvents([]);
       });
   };
@@ -81,7 +81,7 @@ const WeekAtaGlance = ({ user }) => {
       return eventDate >= startOfWeek && eventDate <= endOfWeek;
     });
 
-    console.log("✅ Filtered Week Events:", weekEvents);
+    console.log("Filtered Week Events:", weekEvents);
     setEvents(weekEvents);
   };
 

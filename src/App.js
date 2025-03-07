@@ -18,13 +18,13 @@ function App() {
   });
   const navigate = useNavigate();
 
-  // ✅ Store user in local storage on login
+  // Store user in local storage on login
   const handleLogin = (userData) => {
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  // ✅ Remove user from local storage on logout
+  // Remove user from local storage on logout
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("user");
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      {/* ✅ Responsive Navbar */}
+      {/* Responsive Navbar */}
       {user && (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container-fluid">
@@ -75,7 +75,7 @@ function App() {
                 </li>
               </ul>
 
-              {/* ✅ Mobile-Friendly User Info & Logout Button */}
+              {/* Mobile-Friendly User Info & Logout Button */}
               <div className="navbar-text d-flex flex-column flex-md-row align-items-center">
                 <span className="me-md-3 mb-2 mb-md-0">
                   Welcome, {user?.firstName}
@@ -90,7 +90,7 @@ function App() {
         </nav>
       )}
 
-      {/* ✅ Make Main Container Responsive */}
+      {/* Make Main Container Responsive */}
       <div className="container-fluid mt-4">
         <Routes>
           <Route path="/" element={<LoginRegister setUser={handleLogin} />} />
@@ -138,7 +138,7 @@ function App() {
         </Routes>
       </div>
 
-      {/* ✅ Footer: Centered & Responsive */}
+      {/* Footer: Centered & Responsive */}
       <footer className="bg-primary text-white text-center py-3 mt-4">
         <div className="container">
           <p className="mb-0">© 2025 CrafTi Pro | Built for small business owners</p>

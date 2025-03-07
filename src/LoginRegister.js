@@ -23,31 +23,31 @@ const LoginRegister = ({ setUser }) => {
 
     axios.post(`https://craftipro.com/${endpoint}`, userData)
       .then(response => {
-        console.log("✅ Login/Register Response:", response.data);
+        console.log("Login/Register Response:", response.data);
 
         if (response.data.message.includes("successful")) {
-          // ✅ Store complete user data including UserID
+          // Store complete user data including UserID
           const loggedInUser = {
-            UserID: response.data.UserID,  // ✅ Ensure UserID is stored
+            UserID: response.data.UserID,  // Ensure UserID is stored
             firstName: response.data.FirstName,
             lastName: response.data.LastName,
             businessName: response.data.BusinessName || null,
           };
 
-          // ✅ Update global state
+          // Update global state
           setUser(loggedInUser);
           
-          // ✅ Store in localStorage
+          // Store in localStorage
           localStorage.setItem("user", JSON.stringify(loggedInUser)); 
 
-          // ✅ Redirect to dashboard
+          // Redirect to dashboard
           navigate('/dashboard');
         } else {
           setMessage(response.data.error);
         }
       })
       .catch(error => {
-        console.error("❌ Login/Register Error:", error);
+        console.error("Login/Register Error:", error);
         setMessage("An error occurred. Please try again.");
       });
   };

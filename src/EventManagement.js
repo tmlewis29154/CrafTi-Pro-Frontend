@@ -8,7 +8,7 @@ const EventManagement = ({ user }) => {
   const [eventDesc, setEventDesc] = useState('');
   const [message, setMessage] = useState('');
 
-  console.log("User in EventManagement:", user);  // ✅ Debugging: Log user data
+  console.log("User in EventManagement:", user);  // Debugging: Log user data
 
   useEffect(() => {
     if (!user || !user.UserID) {
@@ -64,7 +64,7 @@ const EventManagement = ({ user }) => {
     });
   };
 
-  // ✅ Function to Handle Event Deletion
+  // Function to Handle Event Deletion
   const handleDeleteEvent = (eventID) => {
     if (!window.confirm("Are you sure you want to delete this event?")) return;
 
@@ -123,11 +123,11 @@ const EventManagement = ({ user }) => {
               <a href={`/manage-business/events/${event.EventID}/add-expense`} className="btn btn-danger mt-2 me-2">
                 Add Expense
               </a>
-              {/* 🟩 Edit Event Button (Green) */}
+              {/* Edit Event Button (Green) */}
               <a href={`/manage-business/events/${event.EventID}/edit`} className="btn btn-success mt-2 me-2">
                 Edit Event
               </a>
-              {/* ❌ Delete Event Button (Red) */}
+              {/* Delete Event Button (Red) */}
               <button className="btn btn-outline-danger mt-2" onClick={() => handleDeleteEvent(event.EventID)}>
                 Delete
               </button>

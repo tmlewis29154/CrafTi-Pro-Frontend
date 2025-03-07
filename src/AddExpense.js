@@ -11,17 +11,17 @@ const AddExpense = ({ user }) => {
   const [eventDate, setEventDate] = useState(''); // ✅ Store the EventDate
   const [message, setMessage] = useState('');
 
-  // ✅ Fetch EventDate when the component loads
+  // Fetch EventDate when the component loads
   useEffect(() => {
     axios.get(`https://craftipro.com/get_event.php?UserID=${user.UserID}&EventID=${eventId}`)
       .then(response => {
         if (response.data && response.data.EventDate) {
-          setEventDate(response.data.EventDate); // ✅ Set EventDate from API
+          setEventDate(response.data.EventDate); // Set EventDate from API
         } else {
-          console.error("❌ Event Date not found for EventID:", eventId);
+          console.error("Event Date not found for EventID:", eventId);
         }
       })
-      .catch(error => console.error("❌ Error fetching event date:", error));
+      .catch(error => console.error("Error fetching event date:", error));
   }, [eventId, user.UserID]);
 
   const handleAddExpense = (e) => {
@@ -31,7 +31,7 @@ const AddExpense = ({ user }) => {
       EventID: eventId,
       ExpCategory: category,
       ExpAmount: amount,
-      ExpDate: eventDate, // ✅ Use fetched EventDate instead of today's date
+      ExpDate: eventDate, // Use fetched EventDate instead of today's date
       ExpDesc: description
     };
 
@@ -39,7 +39,7 @@ const AddExpense = ({ user }) => {
       headers: { "Content-Type": "application/json" },
     })
       .then(response => {
-        console.log("✅ Expense added:", response.data);
+        console.log("Expense added:", response.data);
         setMessage("Expense recorded successfully!");
         setCategory('');
         setAmount('');
@@ -47,7 +47,7 @@ const AddExpense = ({ user }) => {
         setTimeout(() => navigate('/manage-business/events'), 2000);
       })
       .catch(error => {
-        console.error("❌ Error adding expense:", error);
+        console.error("Error adding expense:", error);
         setMessage("Failed to record expense.");
       });
   };
@@ -76,7 +76,7 @@ const AddExpense = ({ user }) => {
 
         <div className="mb-3">
           <label className="form-label">Expense Date</label>
-          <input type="date" className="form-control" value={eventDate} readOnly /> {/* ✅ Display EventDate but make it read-only */}
+          <input type="date" className="form-control" value={eventDate} readOnly /> {/* Display EventDate but make it read-only */}
         </div>
 
         <div className="mb-3">

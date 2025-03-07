@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const ProductManagement = ({ user }) => {  
-  const [products, setProducts] = useState([]);  // ✅ Ensure products is an array
+  const [products, setProducts] = useState([]);  // Ensure products is an array
   const [productName, setProductName] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
   const [productPrice, setProductPrice] = useState('');
@@ -16,12 +16,12 @@ const ProductManagement = ({ user }) => {
 
     axios.get(`https://craftipro.com/get_products.php?UserID=${user.UserID}`)
       .then(response => {
-        console.log("Fetched Products:", response.data); // ✅ Debugging log
-        setProducts(Array.isArray(response.data) ? response.data : []); // ✅ Ensure it's an array
+        console.log("Fetched Products:", response.data); // Debugging log
+        setProducts(Array.isArray(response.data) ? response.data : []); // Ensure it's an array
       })
       .catch(error => {
         console.error("Error fetching products:", error);
-        setProducts([]); // ✅ Set as empty array on error
+        setProducts([]); // Set as empty array on error
       });
   };
 
@@ -41,7 +41,7 @@ const ProductManagement = ({ user }) => {
     })
     .then(response => {
       console.log("Product Added:", response.data);
-      fetchProducts();  // ✅ Refresh products to show updated stock
+      fetchProducts();  // Refresh products to show updated stock
       setProductName('');
       setProductQuantity('');
       setProductPrice('');

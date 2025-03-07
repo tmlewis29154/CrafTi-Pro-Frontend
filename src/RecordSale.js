@@ -31,28 +31,28 @@ const RecordSale = ({ user }) => {
 
   const fetchEvents = () => {
     if (!user || !user.UserID) {
-        console.error("❌ User not found, skipping event fetch.");
+        console.error("User not found, skipping event fetch.");
         return;
     }
 
     axios.get(`https://craftipro.com/get_event.php?UserID=${user.UserID}`)
       .then(response => {
-        console.log("✅ Fetched Events for Sale Form:", response.data);
+        console.log("Fetched Events for Sale Form:", response.data);
         setEvents(Array.isArray(response.data) ? response.data : []);
       })
       .catch(error => {
-        console.error("❌ Error fetching events:", error);
+        console.error("Error fetching events:", error);
         setEvents([]);
       });
   };
 
-  // ✅ Auto-calculate revenue when product or quantity changes
+  // Auto-calculate revenue when product or quantity changes
   useEffect(() => {
     if (selectedProduct && quantity) {
       const product = products.find(p => p.ProductsID === parseInt(selectedProduct));
       if (product) {
-        const productPrice = parseFloat(product.ProductPrice); // ✅ Convert to number
-        setRevenue((productPrice * quantity).toFixed(2)); // ✅ Automatically calculates revenue
+        const productPrice = parseFloat(product.ProductPrice); // Convert to number
+        setRevenue((productPrice * quantity).toFixed(2)); // Automatically calculates revenue
       } else {
         setRevenue('');
       }

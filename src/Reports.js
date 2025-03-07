@@ -13,13 +13,13 @@ import {
 } from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
 
-// ✅ Register required Chart.js components
+// Register required Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Reports = ({ user }) => {
   const [salesData, setSalesData] = useState([]);
   const [expensesData, setExpensesData] = useState([]);
-  const [profitData, setProfitData] = useState([]); // ✅ Fix: Now mapped to correct API response
+  const [profitData, setProfitData] = useState([]); // 
   const [eventProfits, setEventProfits] = useState([]);
   const [topProducts, setTopProducts] = useState([]);
   const [timeframe, setTimeframe] = useState("current_month"); // Default: Current Month
@@ -44,10 +44,10 @@ const Reports = ({ user }) => {
     console.log("🔍 Fetching Reports with URL:", analyticsUrl);
     console.log("🔍 Fetching Top-Selling Products with URL:", topProductsUrl);
   
-    // ✅ Fetch Analytics Data
+    // Fetch Analytics Data
     axios.get(analyticsUrl)
       .then(response => {
-        console.log("✅ Reports API Full Response:", response.data);
+        console.log("Reports API Full Response:", response.data);
   
         setSalesData(Array.isArray(response.data.sales) ? response.data.sales : []);
         setExpensesData(Array.isArray(response.data.expenses) ? response.data.expenses : []);
@@ -55,21 +55,21 @@ const Reports = ({ user }) => {
         setEventProfits(Array.isArray(response.data.most_profitable_events) ? response.data.most_profitable_events : []);
       })
       .catch(error => {
-        console.error("❌ Error fetching analytics:", error);
+        console.error("Error fetching analytics:", error);
         setSalesData([]);
         setExpensesData([]);
         setProfitData([]);
         setEventProfits([]);
       });
   
-    // ✅ Fetch Top-Selling Products Data
+    // Fetch Top-Selling Products Data
     axios.get(topProductsUrl)
       .then(response => {
         console.log("🔥 Top-Selling Products Response:", response.data);
         setTopProducts(Array.isArray(response.data) ? response.data : []);
       })
       .catch(error => {
-        console.error("❌ Error fetching top-selling products:", error);
+        console.error("Error fetching top-selling products:", error);
         setTopProducts([]);
       })
       .finally(() => setLoading(false));
@@ -86,7 +86,7 @@ const Reports = ({ user }) => {
     <div className="container mt-4">
       <h2 className="text-primary fw-bold">📊 Business Reports</h2>
 
-      {/* ✅ Timeframe Selection */}
+      {/* Timeframe Selection */}
       <div className="mb-3">
         <label className="fw-bold">Select Timeframe:</label>
         <select 
@@ -102,7 +102,7 @@ const Reports = ({ user }) => {
         </select>
       </div>
 
-      {/* ✅ Custom Date Range Inputs */}
+      {/* Custom Date Range Inputs */}
       {timeframe === "custom" && (
         <div className="d-flex gap-3">
           <input 
@@ -120,7 +120,7 @@ const Reports = ({ user }) => {
         </div>
       )}
 
-      {/* ✅ Show Loading Indicator */}
+      {/* Show Loading Indicator */}
       {loading && <p className="text-center text-muted">Loading data...</p>}
 
       {/* 📈 Sales, Expenses, & Net Profit Over Time */}
@@ -128,7 +128,7 @@ const Reports = ({ user }) => {
         <div className="card-body">
           <h5 className="card-title text-center">📈 Sales, Expenses, & Net Profit Over Time</h5>
           {salesData.length > 0 || expensesData.length > 0 || profitData.length > 0 ? (
-            <div style={{ height: "400px" }}> {/* ✅ Fix chart height */}
+            <div style={{ height: "400px" }}> 
               <Line
                 data={{
                   labels: [...new Set([...salesData.map(entry => entry.date), ...expensesData.map(entry => entry.date), ...profitData.map(entry => entry.date)])].sort(),
@@ -149,7 +149,7 @@ const Reports = ({ user }) => {
                     },
                     {
                       label: "Net Profit",
-                      data: profitData.map(entry => Number(entry.total) || 0), // ✅ Fix: Ensure correct mapping
+                      data: profitData.map(entry => Number(entry.total) || 0), // Ensure correct mapping
                       borderColor: "green",
                       backgroundColor: "rgba(0, 255, 0, 0.2)",
                       fill: true,

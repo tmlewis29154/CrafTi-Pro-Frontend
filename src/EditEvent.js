@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
 const EditEvent = ({ user }) => {
-  const { eventId } = useParams(); // ✅ Get EventID from URL
+  const { eventId } = useParams(); // Get EventID from URL
   const navigate = useNavigate();
 
   const [eventName, setEventName] = useState("");
@@ -55,7 +55,7 @@ const EditEvent = ({ user }) => {
       .then((response) => {
         if (response.data.success) {
           setMessage("Event updated successfully!");
-          navigate("/manage-business/events"); // ✅ Redirect after update
+          navigate("/manage-business/events"); // Redirect after update
         } else {
           setMessage(`Error: ${response.data.error}`);
         }

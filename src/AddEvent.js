@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';  // ✅ Import axios
+import axios from 'axios';  // Import axios
 
-const AddEvent = ({ user, setRefresh }) => {  // ✅ Accept `user` as a prop
+const AddEvent = ({ user, setRefresh }) => { 
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [description, setDescription] = useState('');
@@ -16,7 +16,7 @@ const AddEvent = ({ user, setRefresh }) => {  // ✅ Accept `user` as a prop
     }
 
     const eventData = { 
-      UserID: user.UserID, // ✅ Include UserID
+      UserID: user.UserID, //Include UserID
       EventName: name, 
       EventDate: date, 
       EventDesc: description 
@@ -29,7 +29,7 @@ const AddEvent = ({ user, setRefresh }) => {  // ✅ Accept `user` as a prop
         headers: { "Content-Type": "application/json" },
       });
 
-      console.log("Server response:", response.data); // ✅ Log full response
+      console.log("Server response:", response.data); // Log full response
 
       if (response.data.message === "Event added successfully") {
         setMessage("Event added successfully!");
@@ -37,7 +37,7 @@ const AddEvent = ({ user, setRefresh }) => {  // ✅ Accept `user` as a prop
         setDate("");
         setDescription("");
 
-        // ✅ Refresh the dashboard to show the newly added event
+        // Refresh the dashboard to show the newly added event
         setTimeout(() => setRefresh(prev => !prev), 500);
       } else {
         console.error("Error from API:", response.data.error);

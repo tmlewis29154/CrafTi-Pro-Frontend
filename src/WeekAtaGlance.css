@@ -8,7 +8,7 @@
   
   .week-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* ✅ Ensures 7 equal columns for the week */
+    grid-template-columns: repeat(7, 1fr); 
     gap: 10px;
     padding: 10px;
   }
@@ -30,7 +30,7 @@
     border-radius: 6px;
     padding: 10px;
     text-align: center;
-    min-height: 160px; /* ✅ Increased from 130px */
+    min-height: 160px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
   }
@@ -58,8 +58,8 @@
     padding: 5px;
     margin-bottom: 5px;
     font-size: 0.9rem;
-    display: block; /* ✅ Ensures events are displayed */
-    min-height: 40px; /* ✅ Gives room for event text */
+    display: block; 
+    min-height: 40px; 
     overflow-wrap: break-word;
   }
 

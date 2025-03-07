@@ -19,7 +19,7 @@ const CalendarPage = ({ user }) => {
           const formattedEvents = response.data.map(event => ({
             id: event.EventID,
             title: event.EventName,
-            start: event.EventDate, // ✅ No unnecessary conversion
+            start: event.EventDate, 
             extendedProps: {
               description: event.EventDesc
             }
@@ -39,7 +39,7 @@ const CalendarPage = ({ user }) => {
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         events={events}
-        eventClick={info => alert(info.event.extendedProps.description)} // ✅ Click event shows description
+        eventClick={info => alert(info.event.extendedProps.description)} // Click event shows description
       />
     </div>
   );

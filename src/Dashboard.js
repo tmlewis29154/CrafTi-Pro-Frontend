@@ -10,7 +10,7 @@ const Dashboard = ({ user }) => {
 
   useEffect(() => {
     if (!user || !user.UserID) {
-      console.error("❌ User not logged in. Cannot fetch analytics.");
+      console.error("User not logged in. Cannot fetch analytics.");
       return;
     }
     fetchAnalytics();
@@ -19,10 +19,10 @@ const Dashboard = ({ user }) => {
   const fetchAnalytics = () => {
     axios.get(`https://craftipro.com/analytics.php?UserID=${user.UserID}&timeframe=current_month`)
       .then(response => {
-        console.log("✅ Fetched Dashboard Data:", response.data);
+        console.log("Fetched Dashboard Data:", response.data);
   
         if (!response.data || typeof response.data !== "object") {
-          console.error("❌ Invalid Analytics Response:", response.data);
+          console.error("Invalid Analytics Response:", response.data);
           return;
         }
   
@@ -37,7 +37,7 @@ const Dashboard = ({ user }) => {
         setProfit(netProfit);
       })
       .catch(error => {
-        console.error("❌ Error fetching analytics:", error.message);
+        console.error("Error fetching analytics:", error.message);
         setSalesTotal(0);
         setExpensesTotal(0);
         setProfit(0);
