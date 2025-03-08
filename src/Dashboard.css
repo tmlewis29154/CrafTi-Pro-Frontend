@@ -42,6 +42,7 @@
   
   .custom-btn.blue {
     background-color: #007bff;
+    color:white;
   }
   
   .custom-btn.blue:hover {
@@ -50,6 +51,7 @@
   
   .custom-btn.info {
     background-color: #17a2b8;
+    color: white;
   }
   
   .custom-btn.info:hover {
@@ -58,6 +60,7 @@
   
   .custom-btn.green {
     background-color: #28a745;
+    color; white;
   }
   
   .custom-btn.green:hover {
