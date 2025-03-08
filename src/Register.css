@@ -1,0 +1,54 @@
+/* Register Page Container */
+.register-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Register Form */
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Input Fields */
+  .input-field {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  /* Submit Button */
+  .custom-btn {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .custom-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Info Message */
+  .info-message {
+    font-size: 16px;
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+  

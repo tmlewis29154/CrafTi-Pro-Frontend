@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import "./LoginRegister.css"; // Import custom styling
 
 const LoginRegister = ({ setUser }) => {
   const [isRegister, setIsRegister] = useState(false);
@@ -26,21 +27,15 @@ const LoginRegister = ({ setUser }) => {
         console.log("Login/Register Response:", response.data);
 
         if (response.data.message.includes("successful")) {
-          // Store complete user data including UserID
           const loggedInUser = {
-            UserID: response.data.UserID,  // Ensure UserID is stored
+            UserID: response.data.UserID,
             firstName: response.data.FirstName,
             lastName: response.data.LastName,
             businessName: response.data.BusinessName || null,
           };
 
-          // Update global state
           setUser(loggedInUser);
-          
-          // Store in localStorage
-          localStorage.setItem("user", JSON.stringify(loggedInUser)); 
-
-          // Redirect to dashboard
+          localStorage.setItem("user", JSON.stringify(loggedInUser));
           navigate('/dashboard');
         } else {
           setMessage(response.data.error);
@@ -53,29 +48,29 @@ const LoginRegister = ({ setUser }) => {
   };
 
   return (
-    <div className="container mt-5 text-center">
+    <div className="auth-container">
       <h2>{isRegister ? "Create an Account" : "Welcome to CrafTi Pro"}</h2>
       <p>{isRegister ? "Register to start managing your business." : "Log in to access your dashboard."}</p>
       
-      <div className="card mx-auto p-4" style={{ maxWidth: "400px" }}>
+      <div className="auth-card">
         <form onSubmit={handleSubmit}>
           {isRegister && (
             <>
-              <input type="text" className="form-control mb-2" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-              <input type="text" className="form-control mb-2" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-              <input type="text" className="form-control mb-2" placeholder="Business Name (Optional)" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
+              <input type="text" className="input-field" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+              <input type="text" className="input-field" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+              <input type="text" className="input-field" placeholder="Business Name (Optional)" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
             </>
           )}
-          <input type="email" className="form-control mb-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          <input type="password" className="form-control mb-2" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-          <button type="submit" className="btn btn-primary w-100">{isRegister ? "Register" : "Login"}</button>
+          <input type="email" className="input-field" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="password" className="input-field" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <button type="submit" className="auth-btn">{isRegister ? "Register" : "Login"}</button>
         </form>
         
-        {message && <div className="alert alert-danger mt-2">{message}</div>}
+        {message && <div className="error-message">{message}</div>}
 
-        <p className="mt-3">
+        <p className="switch-text">
           {isRegister ? "Already have an account?" : "Don't have an account?"}  
-          <button className="btn btn-link" onClick={() => setIsRegister(!isRegister)}>
+          <button className="switch-btn" onClick={() => setIsRegister(!isRegister)}>
             {isRegister ? "Login here" : "Register here"}
           </button>
         </p>
@@ -85,5 +80,6 @@ const LoginRegister = ({ setUser }) => {
 };
 
 export default LoginRegister;
+
 
 

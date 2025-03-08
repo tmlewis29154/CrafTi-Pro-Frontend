@@ -1,0 +1,56 @@
+/* Centering the login container */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  /* Labels */
+  .form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Fields */
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Custom Button */
+  .custom-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .custom-btn.blue { background-color: #007bff; }
+  .custom-btn.blue:hover { background-color: #0056b3; }
+  
+  /* Error Message */
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  

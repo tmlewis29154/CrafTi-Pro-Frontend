@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "./RecordSale.css"; // Import custom styles
 
 const RecordSale = ({ user }) => {  
-  const [products, setProducts] = useState([]); 
+  const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState('');
   const [quantity, setQuantity] = useState('');
   const [revenue, setRevenue] = useState('');
@@ -46,13 +47,12 @@ const RecordSale = ({ user }) => {
       });
   };
 
-  // Auto-calculate revenue when product or quantity changes
   useEffect(() => {
     if (selectedProduct && quantity) {
       const product = products.find(p => p.ProductsID === parseInt(selectedProduct));
       if (product) {
-        const productPrice = parseFloat(product.ProductPrice); // Convert to number
-        setRevenue((productPrice * quantity).toFixed(2)); // Automatically calculates revenue
+        const productPrice = parseFloat(product.ProductPrice);
+        setRevenue((productPrice * quantity).toFixed(2));
       } else {
         setRevenue('');
       }
@@ -93,13 +93,13 @@ const RecordSale = ({ user }) => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="record-sale-container">
       <h2>💰 Record Sale</h2>
 
       {/* Sale Type Selection */}
-      <div className="mb-3">
-        <label className="form-label">Sale Type</label>
-        <select className="form-control" value={isDirectSale} onChange={(e) => setIsDirectSale(e.target.value === "true")}>
+      <div className="form-group">
+        <label>Sale Type</label>
+        <select className="input-field" value={isDirectSale} onChange={(e) => setIsDirectSale(e.target.value === "true")}>
           <option value="false">Linked to an Event</option>
           <option value="true">Direct Sale (No Event)</option>
         </select>
@@ -107,9 +107,9 @@ const RecordSale = ({ user }) => {
 
       {/* Event Selection */}
       {!isDirectSale && (
-        <div className="mb-3">
-          <label className="form-label">Select Event</label>
-          <select className="form-control" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)} required={!isDirectSale}>
+        <div className="form-group">
+          <label>Select Event</label>
+          <select className="input-field" value={selectedEvent} onChange={(e) => setSelectedEvent(e.target.value)} required={!isDirectSale}>
             <option value="">Select an Event</option>
             {events.map(event => (
               <option key={event.EventID} value={event.EventID}>
@@ -121,10 +121,10 @@ const RecordSale = ({ user }) => {
       )}
 
       {/* Add Sale Form */}
-      <form onSubmit={handleRecordSale} className="mb-4">
-        <div className="mb-3">
-          <label className="form-label">Product</label>
-          <select className="form-control" value={selectedProduct} onChange={(e) => setSelectedProduct(e.target.value)} required>
+      <form onSubmit={handleRecordSale} className="record-sale-form">
+        <div className="form-group">
+          <label>Product</label>
+          <select className="input-field" value={selectedProduct} onChange={(e) => setSelectedProduct(e.target.value)} required>
             <option value="">Select a Product</option>
             {products.length > 0 ? (
               products.map(product => (
@@ -138,40 +138,41 @@ const RecordSale = ({ user }) => {
           </select>
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Quantity Sold</label>
+        <div className="form-group">
+          <label>Quantity Sold</label>
           <input 
             type="number" 
-            className="form-control" 
+            className="input-field" 
             value={quantity} 
             onChange={(e) => setQuantity(e.target.value)} 
             required 
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Total Revenue ($)</label>
+        <div className="form-group">
+          <label>Total Revenue ($)</label>
           <input 
             type="number" 
-            className="form-control" 
+            className="input-field" 
             value={revenue} 
             readOnly 
             required 
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Sale Date</label>
-          <input type="date" className="form-control" value={saleDate} onChange={(e) => setSaleDate(e.target.value)} required />
+        <div className="form-group">
+          <label>Sale Date</label>
+          <input type="date" className="input-field" value={saleDate} onChange={(e) => setSaleDate(e.target.value)} required />
         </div>
 
-        <button type="submit" className="btn btn-success">Record Sale</button>
+        <button type="submit" className="custom-btn">Record Sale</button>
       </form>
 
-      {message && <div className="alert alert-info mt-3">{message}</div>}
+      {message && <div className="info-message">{message}</div>}
     </div>
   );
 };
 
 export default RecordSale;
+
 

@@ -1,0 +1,82 @@
+/* Product Management Page Container */
+.product-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Product Form */
+  .product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  /* Input Fields */
+  .input-field {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  /* Submit Button */
+  .custom-btn {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .custom-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Product List */
+  .product-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  /* Product Items */
+  .product-item {
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  /* In Stock Badge */
+  .in-stock {
+    color: green;
+    font-weight: bold;
+  }
+  
+  /* No Products Message */
+  .no-products {
+    font-size: 16px;
+    color: #777;
+    font-style: italic;
+  }
+  

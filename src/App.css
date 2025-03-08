@@ -1,43 +1,81 @@
-/* Center text inside components */
-.App {
-  text-align: center;
+/* NAVBAR */
+.custom-navbar {
+  background-color: #007bff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* App Header */
-.App-header {
-  background-color: #343a40;
-  min-height: 100vh;
+.navbar-content {
   display: flex;
-  flex-direction: column;
+  width: 100%;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+.custom-brand {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* USER INFO */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: white;
 }
 
-/* Remove default margin from all headings inside the app */
-.App h2, .App h3 {
-  margin-top: 0;
+/* BUTTON */
+.custom-btn {
+  background-color: #ffffff;
+  color: #007bff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-/* Links */
-.App-link {
-  color: #17a2b8; /* Bootstrap info color */
-  text-decoration: none;
-  font-weight: 600;
+.custom-btn:hover {
+  background-color: #e6e6e6;
 }
 
-.App-link:hover {
-  text-decoration: underline;
+/* MAIN CONTENT */
+.main-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding-top: 20px;
 }
 
-/* Animations */
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* FOOTER */
+.custom-footer {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 20px;
 }
+
+
 

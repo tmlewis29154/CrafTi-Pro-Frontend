@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "./ProductManagement.css"; // Import custom styles
 
 const ProductManagement = ({ user }) => {  
-  const [products, setProducts] = useState([]);  // Ensure products is an array
+  const [products, setProducts] = useState([]);
   const [productName, setProductName] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
   const [productPrice, setProductPrice] = useState('');
@@ -16,12 +17,12 @@ const ProductManagement = ({ user }) => {
 
     axios.get(`https://craftipro.com/get_products.php?UserID=${user.UserID}`)
       .then(response => {
-        console.log("Fetched Products:", response.data); // Debugging log
-        setProducts(Array.isArray(response.data) ? response.data : []); // Ensure it's an array
+        console.log("Fetched Products:", response.data);
+        setProducts(Array.isArray(response.data) ? response.data : []);
       })
       .catch(error => {
         console.error("Error fetching products:", error);
-        setProducts([]); // Set as empty array on error
+        setProducts([]);
       });
   };
 
@@ -41,7 +42,7 @@ const ProductManagement = ({ user }) => {
     })
     .then(response => {
       console.log("Product Added:", response.data);
-      fetchProducts();  // Refresh products to show updated stock
+      fetchProducts();
       setProductName('');
       setProductQuantity('');
       setProductPrice('');
@@ -50,37 +51,37 @@ const ProductManagement = ({ user }) => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="product-container">
       <h2>📦 Product Management</h2>
 
       {/* Add Product Form */}
-      <form onSubmit={handleAddProduct} className="mb-4">
-        <div className="mb-3">
-          <label className="form-label">Product Name</label>
-          <input type="text" className="form-control" value={productName} onChange={(e) => setProductName(e.target.value)} required />
+      <form onSubmit={handleAddProduct} className="product-form">
+        <div className="form-group">
+          <label>Product Name</label>
+          <input type="text" className="input-field" value={productName} onChange={(e) => setProductName(e.target.value)} required />
         </div>
-        <div className="mb-3">
-          <label className="form-label">Quantity</label>
-          <input type="number" className="form-control" value={productQuantity} onChange={(e) => setProductQuantity(e.target.value)} required />
+        <div className="form-group">
+          <label>Quantity</label>
+          <input type="number" className="input-field" value={productQuantity} onChange={(e) => setProductQuantity(e.target.value)} required />
         </div>
-        <div className="mb-3">
-          <label className="form-label">Price ($)</label>
-          <input type="number" className="form-control" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} required />
+        <div className="form-group">
+          <label>Price ($)</label>
+          <input type="number" className="input-field" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} required />
         </div>
-        <button type="submit" className="btn btn-primary">Add Product</button>
+        <button type="submit" className="custom-btn">Add Product</button>
       </form>
 
       {/* Product List */}
       <h3>Current Inventory</h3>
-      <ul className="list-group">
+      <ul className="product-list">
         {products.length > 0 ? (
           products.map(product => (
-            <li key={product.ProductsID} className="list-group-item">
-              <strong>{product.ProductName}</strong> - <span className="text-success fw-bold">{product.ProductQuantity} in stock</span> - ${product.ProductPrice}
+            <li key={product.ProductsID} className="product-item">
+              <strong>{product.ProductName}</strong> - <span className="in-stock">{product.ProductQuantity} in stock</span> - ${product.ProductPrice}
             </li>
           ))
         ) : (
-          <p className="text-muted">No products found.</p>
+          <p className="no-products">No products found.</p>
         )}
       </ul>
     </div>
@@ -88,5 +89,6 @@ const ProductManagement = ({ user }) => {
 };
 
 export default ProductManagement;
+
 
 

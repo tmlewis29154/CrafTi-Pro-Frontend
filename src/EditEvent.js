@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import "./EditEvent.css"; // Import custom styles
 
 const EditEvent = ({ user }) => {
   const { eventId } = useParams(); // Get EventID from URL
@@ -67,47 +68,48 @@ const EditEvent = ({ user }) => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="edit-event-container">
       <h2>Edit Event</h2>
 
-      {message && <div className="alert alert-info">{message}</div>}
+      {message && <div className="info-message">{message}</div>}
 
-      <form onSubmit={handleUpdateEvent}>
-        <div className="mb-3">
-          <label className="form-label">Event Name</label>
+      <form onSubmit={handleUpdateEvent} className="edit-event-form">
+        <div className="form-group">
+          <label>Event Name</label>
           <input
             type="text"
-            className="form-control"
+            className="input-field"
             value={eventName}
             onChange={(e) => setEventName(e.target.value)}
             required
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Event Date</label>
+        <div className="form-group">
+          <label>Event Date</label>
           <input
             type="date"
-            className="form-control"
+            className="input-field"
             value={eventDate}
             onChange={(e) => setEventDate(e.target.value)}
             required
           />
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Description</label>
+        <div className="form-group">
+          <label>Description</label>
           <textarea
-            className="form-control"
+            className="input-field"
             value={eventDesc}
             onChange={(e) => setEventDesc(e.target.value)}
           />
         </div>
 
-        <button type="submit" className="btn btn-success">Update Event</button>
+        <button type="submit" className="custom-btn green">Update Event</button>
       </form>
     </div>
   );
 };
 
 export default EditEvent;
+

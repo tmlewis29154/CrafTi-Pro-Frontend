@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';  // Import axios
-
+import "./AddEvent.css";
 const AddEvent = ({ user, setRefresh }) => { 
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
@@ -50,45 +50,45 @@ const AddEvent = ({ user, setRefresh }) => {
   };
 
   return (
-    <div className="card mb-4">
-      <div className="card-header bg-primary text-white">
+    <div className="event-card">
+      <div className="event-card-header">
         <h2>Add Event</h2>
       </div>
-      <div className="card-body">
+      <div className="event-card-body">
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label className="form-label">Event Name</label>
+          <div className="form-group">
+            <label>Event Name</label>
             <input
               type="text"
-              className="form-control"
+              className="input-field"
               placeholder="Enter event name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
-          <div className="mb-3">
-            <label className="form-label">Event Date</label>
+          <div className="form-group">
+            <label>Event Date</label>
             <input
               type="date"
-              className="form-control"
+              className="input-field"
               value={date}
               onChange={(e) => setDate(e.target.value)}
               required
             />
           </div>
-          <div className="mb-3">
-            <label className="form-label">Description</label>
+          <div className="form-group">
+            <label>Description</label>
             <textarea
-              className="form-control"
+              className="input-field"
               placeholder="Enter event description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
-          <button type="submit" className="btn btn-primary">Add Event</button>
+          <button type="submit" className="custom-btn">Add Event</button>
         </form>
-        {message && <div className="alert alert-info mt-3">{message}</div>}
+        {message && <div className="info-message">{message}</div>}
       </div>
     </div>
   );

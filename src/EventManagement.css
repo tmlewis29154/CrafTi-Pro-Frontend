@@ -1,0 +1,115 @@
+/* Event Management Container */
+.event-management-container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Form */
+  .event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Fields */
+  .input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  /* Buttons */
+  .custom-btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+  }
+  
+  .custom-btn.blue {
+    background-color: #007bff;
+  }
+  
+  .custom-btn.red {
+    background-color: #dc3545;
+  }
+  
+  .custom-btn.green {
+    background-color: #28a745;
+  }
+  
+  .custom-btn.outline-red {
+    background-color: transparent;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+  }
+  
+  .custom-btn:hover {
+    opacity: 0.8;
+  }
+  
+  /* Event List */
+  .event-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .event-item {
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  /* Event Buttons */
+  .event-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .event-buttons a,
+  .event-buttons button {
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* Info Messages */
+  .info-message {
+    background: #d1ecf1;
+    color: #0c5460;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  

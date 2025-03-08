@@ -13,14 +13,13 @@ const WeekAtaGlance = ({ user }) => {
       return;
     }
 
-    console.log("WeekAtAGlance - Logged-in UserID:", user.UserID);
+    console.log("✅ WeekAtAGlance - Logged-in UserID:", user.UserID);
     fetchWeekDays();
     fetchEvents();
 
-    // Window Resize for Responsive Layout
+    // Responsive Layout - Track Window Resize
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, [user]);
 
@@ -28,22 +27,15 @@ const WeekAtaGlance = ({ user }) => {
     const today = new Date();
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - today.getDay()); // Move to Sunday
-    const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(startOfWeek.getDate() + 6); // Move to Saturday
-
-    let days = [];
-    for (let i = 0; i < 7; i++) {
+    const days = Array.from({ length: 7 }, (_, i) => {
       const date = new Date(startOfWeek);
       date.setDate(startOfWeek.getDate() + i);
-      days.push({
+      return {
         fullDate: date.toISOString().split("T")[0], // Format YYYY-MM-DD
-        displayDate: date.toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-        }),
+        displayDate: date.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
         dayName: date.toLocaleDateString("en-US", { weekday: "short" }),
-      });
-    }
+      };
+    });
     setWeekDays(days);
   };
 
@@ -51,10 +43,10 @@ const WeekAtaGlance = ({ user }) => {
     axios
       .get(`https://craftipro.com/get_event.php?UserID=${user.UserID}`)
       .then((response) => {
-        console.log("Raw API Response:", response.data);
+        console.log("✅ Raw API Response:", response.data);
 
-        if (!response.data || !Array.isArray(response.data)) {
-          console.error("API returned invalid JSON or empty:", response.data);
+        if (!Array.isArray(response.data)) {
+          console.error("❌ API returned invalid JSON or empty:", response.data);
           setEvents([]);
           return;
         }
@@ -62,7 +54,7 @@ const WeekAtaGlance = ({ user }) => {
         filterEventsForCurrentWeek(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching events:", error.message);
+        console.error("❌ Error fetching events:", error.message);
         setEvents([]);
       });
   };
@@ -70,10 +62,10 @@ const WeekAtaGlance = ({ user }) => {
   const filterEventsForCurrentWeek = (allEvents) => {
     const today = new Date();
     const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - today.getDay()); // Move to Sunday
+    startOfWeek.setDate(today.getDate() - today.getDay());
     startOfWeek.setHours(0, 0, 0, 0);
     const endOfWeek = new Date(startOfWeek);
-    endOfWeek.setDate(startOfWeek.getDate() + 6); // Move to Saturday
+    endOfWeek.setDate(startOfWeek.getDate() + 6);
     endOfWeek.setHours(23, 59, 59, 999);
 
     const weekEvents = allEvents.filter((event) => {
@@ -81,27 +73,23 @@ const WeekAtaGlance = ({ user }) => {
       return eventDate >= startOfWeek && eventDate <= endOfWeek;
     });
 
-    console.log("Filtered Week Events:", weekEvents);
+    console.log("✅ Filtered Week Events:", weekEvents);
     setEvents(weekEvents);
   };
 
   const groupEventsByDate = () => {
-    const grouped = {};
-    events.forEach((event) => {
-      const eventDate = event.EventDate;
-      if (!grouped[eventDate]) {
-        grouped[eventDate] = [];
-      }
-      grouped[eventDate].push(event);
-    });
-    return grouped;
+    return events.reduce((grouped, event) => {
+      grouped[event.EventDate] = grouped[event.EventDate] || [];
+      grouped[event.EventDate].push(event);
+      return grouped;
+    }, {});
   };
 
   const groupedEvents = groupEventsByDate();
 
   return (
     <div className="week-calendar-container">
-      <h3 className="text-center fw-bold text-primary">📅 Week at a Glance</h3>
+      <h3 className="week-title">📅 Week at a Glance</h3>
       <div className={`week-grid ${windowWidth < 768 ? "mobile-grid" : ""}`}>
         {weekDays.map(({ fullDate, displayDate, dayName }) => (
           <div key={fullDate} className="day-column">
@@ -128,3 +116,4 @@ const WeekAtaGlance = ({ user }) => {
 };
 
 export default WeekAtaGlance;
+

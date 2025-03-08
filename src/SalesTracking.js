@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './SalesTracking.css';
 
 const SalesTracking = ({ user }) => { 
   const [sales, setSales] = useState([]);
@@ -13,23 +14,22 @@ const SalesTracking = ({ user }) => {
     axios
       .get(`https://craftipro.com/get_sales.php?UserID=${user.UserID}`)
       .then((response) => {
-        console.log("Fetched Sales Data:", response.data); // Debugging
+        console.log("Fetched Sales Data:", response.data);
         setSales(Array.isArray(response.data) ? response.data : []);
       })
       .catch((error) => {
         console.error("Error fetching sales:", error);
-        setSales([]); // Set empty array on error
+        setSales([]);
       });
   }, [user]);
 
   return (
-    <div className="card mt-4">
-      <div className="card-header bg-primary text-white">
-        <h2>📊 Sales Tracking</h2>
-      </div>
-      <div className="card-body">
-        {sales.length > 0 ? (
-          <table className="table table-striped">
+    <div className="sales-container">
+      <h2 className="sales-title">📊 Sales Tracking</h2>
+
+      {sales.length > 0 ? (
+        <div className="table-container">
+          <table className="sales-table">
             <thead>
               <tr>
                 <th>Sale ID</th>
@@ -51,15 +51,16 @@ const SalesTracking = ({ user }) => {
               ))}
             </tbody>
           </table>
-        ) : (
-          <p className="text-muted">No sales data available.</p>
-        )}
-      </div>
+        </div>
+      ) : (
+        <p className="no-data-text">No sales data available.</p>
+      )}
     </div>
   );
 };
 
 export default SalesTracking;
+
 
 
 

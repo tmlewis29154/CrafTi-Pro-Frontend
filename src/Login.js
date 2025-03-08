@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import "./Login.css"; // Import new CSS file for styling
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState('');
@@ -29,14 +30,14 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="login-container">
       <h2>🔑 Login</h2>
       <form onSubmit={handleLogin}>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
+        <div className="form-group">
+          <label>Email</label>
           <input
             type="email"
-            className="form-control"
+            className="input-field"
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -44,11 +45,11 @@ const Login = ({ setUser }) => {
           />
         </div>
         
-        <div className="mb-3">
-          <label className="form-label">Password</label>
+        <div className="form-group">
+          <label>Password</label>
           <input
             type="password"
-            className="form-control"
+            className="input-field"
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -56,12 +57,13 @@ const Login = ({ setUser }) => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="custom-btn blue">Login</button>
       </form>
 
-      {message && <div className="alert alert-danger mt-3">{message}</div>}
+      {message && <div className="error-message">{message}</div>}
     </div>
   );
 };
 
 export default Login;
+

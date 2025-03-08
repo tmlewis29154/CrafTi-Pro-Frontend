@@ -1,0 +1,86 @@
+/* Expense Tracking Container */
+.expense-container {
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Form */
+  .expense-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  /* Input Fields */
+  .input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  /* Buttons */
+  .custom-btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+  }
+  
+  .custom-btn.red {
+    background-color: #dc3545;
+  }
+  
+  .custom-btn:hover {
+    opacity: 0.8;
+  }
+  
+  /* Expense List */
+  .expense-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .expense-item {
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  /* Info Messages */
+  .info-message {
+    background: #d1ecf1;
+    color: #0c5460;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  

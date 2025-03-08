@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import "./Register.css"; // Import custom styles
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -31,19 +32,54 @@ const Register = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="register-container">
       <h2>📝 Register</h2>
-      <form onSubmit={handleRegister}>
-        <input type="text" className="form-control mb-2" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-        <input type="text" className="form-control mb-2" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-        <input type="email" className="form-control mb-2" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input type="password" className="form-control mb-2" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        <input type="text" className="form-control mb-2" placeholder="Business Name (Optional)" value={businessName} onChange={(e) => setBusinessName(e.target.value)} />
-        <button type="submit" className="btn btn-primary">Register</button>
+      <form onSubmit={handleRegister} className="register-form">
+        <input 
+          type="text" 
+          className="input-field" 
+          placeholder="First Name" 
+          value={firstName} 
+          onChange={(e) => setFirstName(e.target.value)} 
+          required 
+        />
+        <input 
+          type="text" 
+          className="input-field" 
+          placeholder="Last Name" 
+          value={lastName} 
+          onChange={(e) => setLastName(e.target.value)} 
+          required 
+        />
+        <input 
+          type="email" 
+          className="input-field" 
+          placeholder="Email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required 
+        />
+        <input 
+          type="password" 
+          className="input-field" 
+          placeholder="Password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          required 
+        />
+        <input 
+          type="text" 
+          className="input-field" 
+          placeholder="Business Name (Optional)" 
+          value={businessName} 
+          onChange={(e) => setBusinessName(e.target.value)} 
+        />
+        <button type="submit" className="custom-btn">Register</button>
       </form>
-      {message && <div className="alert alert-danger mt-2">{message}</div>}
+      {message && <div className="info-message">{message}</div>}
     </div>
   );
 };
 
 export default Register;
+
