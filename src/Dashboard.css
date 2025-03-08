@@ -113,5 +113,19 @@
   .week-glance {
     margin-top: 20px;
   }
+
+  /* Ensure Add Sale, Add Event, and Add Product buttons have white text */
+.dashboard-btn {
+    color: white !important; /* Force white text */
+    font-weight: bold; /* Make text stand out */
+    padding: 8px 15px; /* Adjust padding for better spacing */
+    border-radius: 6px; /* Slightly rounded corners for better UI */
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .dashboard-btn:hover {
+    opacity: 0.9; /* Slight fade on hover */
+  }
+  
   
   
